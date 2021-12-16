@@ -1,17 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MetierController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>
-    Cette page affichera la liste des entreprises proposant un stage
-    </h1>
+<p>
+Liste d'entreprises :
+</p>
+<ul>
+<li><a href="{{path('metier_stages_id',{id:1})}}">Entreprise 1</a></li>
+<li><a href="{{path('metier_stages_id',{id:2})}}">Entreprise 2</a></li>
+<li><a href="{{path('metier_stages_id',{id:3})}}">Entreprise 3</a></li>
+<li><a href="{{path('metier_stages_id',{id:4})}}">Entreprise 4</a></li>
+<li><a href="{{path('metier_stages_id',{id:5})}}">Entreprise 5</a></li>
+</ul>
 
-</div>
 {% endblock %}

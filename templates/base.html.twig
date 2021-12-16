@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}ProStages{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
@@ -14,6 +15,29 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block titre %}
+        <center>
+        <img src="./public/logo/logo_large" alt="Ouais" />
+        </center>
+        {% endblock %}
+        {% block soustitre %}
+        <br>
+        <br>
+        <br>
+        <center>
+        Bienvenue sur ProStages !
+        </center>
+        <br>
+        <br>
+        <br>
+        {% endblock %}
+        {% block filtre %}
+            <a href="{{path('metier_accueil')}}">Accueil</a>
+            <a href="{{path('metier_entreprises')}}">Filtrer par entreprises</a>
+            <a href="{{path('metier_formation')}}">Filtrer par formations</a>
+        {% endblock %}
+
+        {% block body %}
+        {% endblock %}
     </body>
 </html>
