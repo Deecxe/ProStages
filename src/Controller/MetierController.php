@@ -45,5 +45,16 @@ class MetierController extends AbstractController
             'id'=>$id,
         ]);
 
-    }
+    } 
+      /**
+    * @Route("/entreprisesid/{id}", name="metier_entreprises_id")
+    */
+   public function entreprisesid($id): Response
+   {
+       return $this->render('metier/entreprisesid.html.twig', [
+           'controller_name' => 'MetierController',
+           'id'=>$id,
+       ]);
+
+   }
 }

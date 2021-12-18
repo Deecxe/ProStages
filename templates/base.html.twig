@@ -30,7 +30,6 @@
     </div>
     {% endblock %}
     {% block soustitre %}
-    <h1>-----------------------------------------------------------------------------------------------------------------------</h1>
     <center>
     Bienvenue sur ProStages !
     <h1>-----------------------------------------------------------------------------------------------------------------------</h1>
@@ -38,9 +37,13 @@
     <br>
     {% endblock %}
     {% block filtre %}
+    <center>
         <a href="{{path('metier_accueil')}}">Accueil</a>
         <a href="{{path('metier_entreprises')}}">Filtrer par entreprises</a>
         <a href="{{path('metier_formation')}}">Filtrer par formations</a>
+        <br>
+        <br>
+    </center>
     {% endblock %}
 
     {% block body %}
