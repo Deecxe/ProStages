@@ -1,0 +1,13 @@
+[class=row]
+{
+    text-align: center;
+    line-height: 35px;
+    color: white;
+    background-color: #0019ff;
+    border: 2px solid #0019ff;
+    border-radius: 6px;
+}
+.link
+{
+    color: white;
+}
