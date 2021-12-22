@@ -8,15 +8,16 @@
     </title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     {% block stylesheets %}
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     
-    <link href="/monCSS.css" rel="stylesheet">
+    <link href="/css/monCSS.css" rel="stylesheet">
     
+    <link href="/css/fontello.css" rel="stylesheet">
     {% endblock %}
 
  
@@ -35,7 +36,7 @@
     <div class="container">
             <div class="row">
                 {% block titre %}
-                <img src={{asset('/img/logo_grand.png')}} alt="...">
+                <i class="icon-plancast"></i><img src={{asset('/img/logo_grand.png')}} alt="...">
                 {% endblock %}
             </div>
         {% block soustitre %}
@@ -54,17 +55,17 @@
         <div class="row">
             <div class="col-md-4 col-sm-4 col-xs-12">
             {% block filtre1 %}
-                <a class="link" href="{{path('metier_accueil')}}">Accueil</a>
+                <i class="icon-plancast"></i><a class="link" href="{{path('metier_accueil')}}"></i>Accueil</a>
             {% endblock %}
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12">
             {% block filtre2 %}
-                <a class="link" href="{{path('metier_entreprises')}}">Filtrer par entreprises</a>
+                <i class="icon-plancast"></i><a class="link" href="{{path('metier_entreprises')}}">Filtrer par entreprises</a>
             {% endblock %}
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12">
             {% block filtre3 %}
-                <a class="link" href="{{path('metier_formation')}}">Filtrer par formations</a>
+                <i class="icon-plancast"></i><a class="link" href="{{path('metier_formation')}}"></i>Filtrer par formations</a>
             {% endblock %}
             </div>
         </div>
@@ -82,14 +83,119 @@
             <div class="col-md-4 offset-md-4 col-sm-4 offset-sm-4 col-xs-12">
             <p style="text-align:right">2021 | 2022 DUT Informatique</p>
             </div>
-    </div>
+        </div>
+        <div class="row" style="background-color:#0019ff;color:white;border:2px solid #0019ff ">
+            <div class="col-md-12 col-sm-12 col-xs-12"></div>       
+        </div>
+        <div class="row"> 
+            <center>
+                \<i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>/
+            </center>
+        </div>
+        <div class="row"> 
+            <center>
+                \<i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>/
+            </center>
+        </div>
+        <div class="row"> 
+            <center>
+                \<i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>/
+            </center>
+        </div>
+        <div class="row"> 
+            <center>
+                \<i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>/
+            </center>
+        </div>
+        <div class="row"> 
+            <center>
+                \<i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>/
+            </center>
+        </div>
+        <div class="row"> 
+            <center>
+                \<i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>/
+            </center>
+        </div>
+        <div class="row"> 
+            <center>
+                \<i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>/
+            </center>
+        </div>
+        <div class="row"> 
+            <center>
+                \<i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>/
+            </center>
+        </div>
+        <div class="row"> 
+            <center>
+                \<i class="icon-plancast"></i>
+                <i class="icon-plancast"></i>/
+            </center>
+        </div>
+        <div class="row"> 
+            <center>
+                \<i class="icon-plancast"></i>/
+            </center>
+        </div>
+        <div class="row"> 
+            <center>
+                \/
+            </center>
+        </div>
 
-    {% endblock %}
+        {% endblock %}
+        
+    </div>
     {% block JavaScript %}
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     {% endblock %}
-    </div>
 </body>
 </html>
