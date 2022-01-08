@@ -10,27 +10,19 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $Entreprise1 = new Entreprise();
-        $Entreprise1->setNom("E1");
-        $Entreprise1->setAdresse("34 rue de la République");
-        $Entreprise1->setActivite("Developpeur d'interface");
-        $Entreprise1->setSiteweb("elegantthemes.com");
-        $manager->persist($Entreprise1);
+        $faker = \Faker\Factory::create('fr_FR');
 
-        $Entreprise2 = new Entreprise();
-        $Entreprise2->setNom("E2");
-        $Entreprise2->setAdresse("83 avenue Voltaire");
-        $Entreprise2->setActivite("Concepteur d'application");
-        $Entreprise2->setSiteweb("dropbox.com");
-        $manager->persist($Entreprise2);
-
-        $Entreprise3 = new Entreprise();
-        $Entreprise3->setNom("E3");
-        $Entreprise3->setAdresse("22 rue des Dunes");
-        $Entreprise3->setActivite("Designer");
-        $Entreprise3->setSiteweb("kickstarter.com");
-        $manager->persist($Entreprise3);
-
+        $nbEntreprise = 3;
+        for($i = 1; $i <= $nbEntreprise; $i++)
+        {
+            $Entreprise = new Entreprise();
+            $Entreprise->setNom($faker->company);
+            $Entreprise->setAdresse($faker->streetAddress);
+            $Entreprise->setActivite($faker->realText($maxNbChars = 200, $indexSize = 2));
+            $Entreprise->setSiteweb($faker->domainName);
+            $manager->persist($Entreprise); 
+        }
+        
         $manager->flush();
     }
 }
