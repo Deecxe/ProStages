@@ -22,36 +22,56 @@ class AppFixtures extends Fixture
             $Entreprise->setAdresse($faker->streetAddress);
             $Entreprise->setActivite($faker->realText($maxNbChars = 50, $indexSize = 2));
             $Entreprise->setSiteweb($faker->domainName);
+            
+            $tabEntreprise[] = $Entreprise;
             $manager->persist($Entreprise); 
         }
-        
-        $nbFormation = 4;
-        for($i = 1; $i <= $nbFormation; $i++)
-        {
+
+
             $Formation = new Formation();
-            $Formation->setNomCourt($faker->realText($maxNbChars = 10, $indexSize = 2));
-            $Formation->setNomLong($faker->realText($maxNbChars = 100, $indexSize = 2));
-            $manager->persist($Formation); 
-        }
+            $Formation->setNomCourt("DUT");
+            $Formation->setNomLong("Diplôme Universitaire de Technologie");
 
-        $nbFormation = 6;
-        for($i = 1; $i <= $nbFormation; $i++)
-        {
-            $Stages = new Stage();
-            $Stages->setTitre($faker->realText($maxNbChars = 10, $indexSize = 2));
-            $Stages->setMission($faker->realText($maxNbChars = 200, $indexSize = 2));
-            $Stages->setEmail($faker->email);
 
-            $Stages->setTypeEntreprise($Entreprise);
+            $Formation1 = new Formation();
+            $Formation1->setNomCourt("DUT+");
+            $Formation1->setNomLong("Diplôme Universitaire de Technologie un peu plus dur");
 
-            $Stages->addTypeFormation($Formation);
+            $Formation2 = new Formation();
+            $Formation2->setNomCourt("DUT++");
+            $Formation2->setNomLong("Diplôme Universitaire de Technologie vachement plus dur");
 
-            $Entreprise->addStage($Stages);
+            $TableauForm = array($Formation,$Formation1,$Formation2);
 
-            $Formation->addStage($Stages);
+            foreach($TableauForm as $tab)
+            {
+            $manager->persist($tab);
+            }
 
-            $manager->persist($Stages); 
-        }
-        $manager->flush();
+            $nbStages = 20;
+            
+            $tabStagiaireUtile = array('Golem','Stagiaire','Graphiste','Journaliste','Video gaming');
+            $tabOutil = array('C++','HTML/CSS','PHP','Javascript','Reseaux','BD');
+
+            for($i=0 ; $i <= $nbStages ; $i++)
+            {
+                $Num = $faker->numberBetween($min = 0, $max = 4);
+                $Num2 = $faker->numberBetween($min = 0, $max = 5);
+                $NumEntreprise = $faker->numberBetween($min = 0, $max = 2);
+                $NumFormation = $faker->numberBetween($min = 0, $max = 2);
+
+                $Stages = new Stage();
+                $Stages->setTitre($tabStagiaireUtile[$Num]." en ".$tabOutil[$Num2]);
+                $Stages->setMission($faker->realText($maxNbChars = 200, $indexSize = 2));
+                $Stages->setEmail($faker->email);
+
+                $Stages->setTypeEntreprise($tabEntreprise[$NumEntreprise]);
+                $Stages->addTypeFormation($TableauForm[$NumFormation]);
+
+                $manager->persist($Stages);
+            }
+
+            
+            $manager->flush();
     }
 }
