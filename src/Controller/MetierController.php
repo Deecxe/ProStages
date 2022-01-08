@@ -9,16 +9,17 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Entity\Stage;
+use App\Repository\StageRepository;
+use App\Repository\FormationRepository;
+use App\Repository\EntrepriseRepository;
 
 class MetierController extends AbstractController
 {
     /**
      * @Route("/", name="metier_accueil")
      */
-    public function index(): Response
+    public function index(StageRepository $repositoryStage): Response
     {
-        $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
-
         $stages = $repositoryStage->findAll();
 
         // Envoyer les stages récupérés à la vue chargée de les afficher
@@ -28,10 +29,8 @@ class MetierController extends AbstractController
       /**
      * @Route("/entreprises", name="metier_entreprises")
      */
-    public function entreprises(): Response
+    public function entreprises(EntrepriseRepository $repositoryEntreprise): Response
     {
-        $repositoryEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
-
         $entreprises = $repositoryEntreprise->findAll();
 
         return $this->render('metier/entreprises.html.twig', ['controller_name' => 'MetierController','entreprises'=>$entreprises]);
@@ -39,10 +38,8 @@ class MetierController extends AbstractController
       /**
      * @Route("/formation", name="metier_formation")
      */
-    public function formation(): Response
+    public function formation(FormationRepository $repositoryFormation): Response
     {
-        $repositoryFormation = $this->getDoctrine()->getRepository(Formation::class);
-
         $formations = $repositoryFormation->findAll();
 
         return $this->render('metier/formation.html.twig', ['controller_name' => 'MetierController','formations'=>$formations]);
@@ -50,19 +47,15 @@ class MetierController extends AbstractController
       /**
      * @Route("/stages/{id}", name="metier_stages_id")
      */
-    public function stages($id): Response
+    public function stages(Stage $stage): Response
     {
-        $repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
-
-        $stage = $repositoryStage->find($id);
-
         return $this->render('metier/stages.html.twig', ['controller_name' => 'MetierController',"stage"=>$stage]);
 
     } 
       /**
     * @Route("/entreprisesid/{id}", name="metier_entreprises_id")
     */
-   public function entreprisesid($id): Response
+   public function entreprisesid(EntrepriseRepository $repositoryEntreprise,$id): Response
    {
        return $this->render('metier/entreprisesid.html.twig', ['controller_name' => 'MetierController','id'=>$id,]);
 
@@ -71,7 +64,7 @@ class MetierController extends AbstractController
       /**
     * @Route("/formationsid/{id}", name="metier_formations_id")
     */
-    public function formationsid($id): Response
+    public function formationsid(FormationRepository $repositoryFormation,$id): Response
     {
         return $this->render('metier/formationsid.html.twig', ['controller_name' => 'MetierController','id'=>$id,]);
  
