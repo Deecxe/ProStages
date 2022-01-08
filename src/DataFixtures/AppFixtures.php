@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+
 use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Entity\Stage;

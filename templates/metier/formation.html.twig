@@ -6,10 +6,21 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>
-    Cette page affichera la liste des formations de l'IUT
-    </h1>
+<p>
+Liste de formations :
+</p>
 
-</div>
+{% for formation in formations %}
+
+
+  <div class="card-deck">
+
+  <div class="card">
+    <div class="card-body">
+      <a href="{{path('metier_formations_id',{id:formation.nomCourt})}}"><h5 class="card-title">{{formation.nomCourt}}</h5></a>
+      <p class="card-text">{{formation.nomLong}}</p>
+    </div>
+  </div>
+{% endfor %}
+
 {% endblock %}

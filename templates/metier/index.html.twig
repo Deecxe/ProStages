@@ -2,7 +2,7 @@
 
 
 {% block body %}
-<div class="container">
+
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
@@ -10,31 +10,28 @@
 <h1 style="font-weight:bold">
 Liste de stage
 </h1>
-<table class="table">
-<br>
-  <tbody>
-    <tr>
-      <td><a href="{{path('metier_stages_id',{id:1})}}">Stage 1</a></td>
-      <td><a href="{{path('metier_stages_id',{id:4})}}">Stage 4</a></td>
-      <td><a href="{{path('metier_stages_id',{id:4})}}">Stage 7</a></td>
-      <td><a href="{{path('metier_stages_id',{id:1})}}">Stage 10</a></td>
-      <td><a href="{{path('metier_stages_id',{id:1})}}">Stage 13</a></td>
-    </tr>
-    <tr>
-      <td><a href="{{path('metier_stages_id',{id:2})}}">Stage 2</a></td>
-      <td><a href="{{path('metier_stages_id',{id:4})}}">Stage 5</a></td>
-      <td><a href="{{path('metier_stages_id',{id:4})}}">Stage 8</a></td>
-      <td><a href="{{path('metier_stages_id',{id:1})}}">Stage 11</a></td>
-      <td><a href="{{path('metier_stages_id',{id:1})}}">Stage 14</a></td>
-    </tr>
-    <tr>
-      <td><a href="{{path('metier_stages_id',{id:3})}}">Stage 3</a></td>
-      <td><a href="{{path('metier_stages_id',{id:4})}}">Stage 6</a></td>
-      <td><a href="{{path('metier_stages_id',{id:4})}}">Stage 9</a></td>
-      <td><a href="{{path('metier_stages_id',{id:1})}}">Stage 12</a></td>
-      <td><a href="{{path('metier_stages_id',{id:1})}}">Stage 15</a></td>
-    </tr>
-  </tbody>
-</table>
-</div>
+
+
+  {% for stage in stages %}
+
+
+  <div class="card-deck">
+
+  <div class="card">
+    <div class="card-body">
+      <a href="{{path('metier_stages_id',{id:stage.id})}}"><h5 class="card-title">{{stage.titre}}</h5></a>
+      <p class="card-text">{{stage.mission}}</p>
+      <p class="card-text">{{stage.email}}</p>
+      <p class="card-text">{{stage.typeEntreprise.nom}}</p>
+      {% for formationCourante in stage.TypeFormation %}
+      <p class="card-text">{{formationCourante.nomCourt}}</p>
+      {% endfor %}
+    </div>
+  </div>
+  
+  <br/>
+  
+  
+  {% endfor %}
+
 {% endblock %}

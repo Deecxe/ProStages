@@ -8,30 +8,24 @@
 <p>
 Liste d'entreprises :
 </p>
-<table class="table">
-<br>
-  <tbody>
-    <tr>
-      <td><a href="{{path('metier_entreprises_id',{id:1})}}">Entreprise 1</a></td>
-      <td><a href="{{path('metier_entreprises_id',{id:4})}}">Entreprise 4</a></td>
-      <td><a href="{{path('metier_entreprises_id',{id:7})}}">Entreprise 7</a></td>
-      <td><a href="{{path('metier_entreprises_id',{id:10})}}">Entreprise 10</a></td>
-      <td><a href="{{path('metier_entreprises_id',{id:13})}}">Entreprise 13</a></td>
-    </tr>
-    <tr>
-      <td><a href="{{path('metier_entreprises_id',{id:2})}}">Entreprise 2</a></td>
-      <td><a href="{{path('metier_entreprises_id',{id:5})}}">Entreprise 5</a></td>
-      <td><a href="{{path('metier_entreprises_id',{id:8})}}">Entreprise 8</a></td>
-      <td><a href="{{path('metier_entreprises_id',{id:11})}}">Entreprise 11</a></td>
-      <td><a href="{{path('metier_entreprises_id',{id:14})}}">Entreprise 14</a></td>
-    </tr>
-    <tr>
-      <td><a href="{{path('metier_entreprises_id',{id:3})}}">Entreprise 3</a></td>
-      <td><a href="{{path('metier_entreprises_id',{id:6})}}">Entreprise 6</a></td>
-      <td><a href="{{path('metier_entreprises_id',{id:9})}}">Entreprise 9</a></td>
-      <td><a href="{{path('metier_entreprises_id',{id:12})}}">Entreprise 12</a></td>
-      <td><a href="{{path('metier_entreprises_id',{id:15})}}">Entreprise 15</a></td>
-    </tr>
-  </tbody>
-</table>
+
+  {% for entreprise in entreprises %}
+
+
+  <div class="card-deck">
+
+  <div class="card">
+    <div class="card-body">
+      <a href="{{path('metier_entreprises_id',{id:entreprise.nom})}}"><h5 class="card-title">{{entreprise.nom}}</h5></a>
+      <p class="card-text">{{entreprise.adresse}}</p>
+      <p class="card-text">{{entreprise.activite}}</p>
+      <p class="card-text">{{entreprise.siteweb}}</p>
+    </div>
+  </div>
+  
+  <br/>
+  
+  
+  {% endfor %}
+
 {% endblock %}

@@ -35,12 +35,12 @@ class Stage
     private $email;
 
     /**
-     * @ORM\ManyToOne(targetEntity=entreprise::class, inversedBy="stages")
+     * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="stages")
      */
     private $typeEntreprise;
 
     /**
-     * @ORM\ManyToMany(targetEntity=formation::class, inversedBy="stages")
+     * @ORM\ManyToMany(targetEntity=Formation::class, inversedBy="stages")
      */
     private $typeFormation;
 
@@ -90,12 +90,12 @@ class Stage
         return $this;
     }
 
-    public function getTypeEntreprise(): ?entreprise
+    public function getTypeEntreprise(): ?Entreprise
     {
         return $this->typeEntreprise;
     }
 
-    public function setTypeEntreprise(?entreprise $typeEntreprise): self
+    public function setTypeEntreprise(?Entreprise $typeEntreprise): self
     {
         $this->typeEntreprise = $typeEntreprise;
 
@@ -103,14 +103,14 @@ class Stage
     }
 
     /**
-     * @return Collection|formation[]
+     * @return Collection|Formation[]
      */
     public function getTypeFormation(): Collection
     {
         return $this->typeFormation;
     }
 
-    public function addTypeFormation(formation $typeFormation): self
+    public function addTypeFormation(Formation $typeFormation): self
     {
         if (!$this->typeFormation->contains($typeFormation)) {
             $this->typeFormation[] = $typeFormation;
@@ -119,7 +119,7 @@ class Stage
         return $this;
     }
 
-    public function removeTypeFormation(formation $typeFormation): self
+    public function removeTypeFormation(Formation $typeFormation): self
     {
         $this->typeFormation->removeElement($typeFormation);
 
