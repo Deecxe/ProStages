@@ -5,9 +5,9 @@
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
-<p>
+<h1 style="font-weight:bold">
 Liste d'entreprises :
-</p>
+</h1>
 
   {% for entreprise in entreprises %}
 
@@ -16,7 +16,7 @@ Liste d'entreprises :
 
   <div class="card">
     <div class="card-body">
-      <a href="{{path('metier_entreprises_id',{id:entreprise.nom})}}"><h5 class="card-title">{{entreprise.nom}}</h5></a>
+      <a href="{{path('metier_entreprises_id',{id:entreprise.id})}}"><h5 class="card-title">{{entreprise.nom}}</h5></a>
       <p class="card-text">{{entreprise.adresse}}</p>
       <p class="card-text">{{entreprise.activite}}</p>
       <p class="card-text">{{entreprise.siteweb}}</p>

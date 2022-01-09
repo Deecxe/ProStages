@@ -55,18 +55,18 @@ class MetierController extends AbstractController
       /**
     * @Route("/entreprisesid/{id}", name="metier_entreprises_id")
     */
-   public function entreprisesid(EntrepriseRepository $repositoryEntreprise,$id): Response
+   public function entreprisesid(Entreprise $entreprise): Response
    {
-       return $this->render('metier/entreprisesid.html.twig', ['controller_name' => 'MetierController','id'=>$id,]);
+       return $this->render('metier/entreprisesid.html.twig', ['controller_name' => 'MetierController','entreprise'=>$entreprise,]);
 
    }
 
       /**
     * @Route("/formationsid/{id}", name="metier_formations_id")
     */
-    public function formationsid(FormationRepository $repositoryFormation,$id): Response
+    public function formationsid(Formation $formation): Response
     {
-        return $this->render('metier/formationsid.html.twig', ['controller_name' => 'MetierController','id'=>$id,]);
+        return $this->render('metier/formationsid.html.twig', ['controller_name' => 'MetierController','formation'=>$formation,]);
  
     }
 }

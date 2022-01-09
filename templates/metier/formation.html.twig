@@ -6,9 +6,9 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<p>
+<h1 style="font-weight:bold">
 Liste de formations :
-</p>
+</h1>
 
 {% for formation in formations %}
 
@@ -17,7 +17,7 @@ Liste de formations :
 
   <div class="card">
     <div class="card-body">
-      <a href="{{path('metier_formations_id',{id:formation.nomCourt})}}"><h5 class="card-title">{{formation.nomCourt}}</h5></a>
+      <a href="{{path('metier_formations_id',{id:formation.id})}}"><h5 class="card-title">{{formation.nomCourt}}</h5></a>
       <p class="card-text">{{formation.nomLong}}</p>
     </div>
   </div>
