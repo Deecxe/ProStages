@@ -1,14 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-<div class="">
-        <h1 class="display-4">Formulaire d'ajout d'une entreprise</h1>
-</div>
-{% endblock %}
 
 {% block body %}
+<center><h1 class="display-4">Formulaire d'ajout d'une entreprise</h1></center>
 
-{{ form(vueFormulaire) }}
+<br>
 
+{{ form_start(vueFormulaire) }}
+
+{{ form_row(vueFormulaire.nom, {'attr':{'placeholder':"Nom de l'entreprise...."}})}}
+
+{{ form_row(vueFormulaire.siteweb, {'attr':{'placeholder':"Site web de l'entreprise...."}})}}
+
+{{ form_row(vueFormulaire.adresse, {'attr':{'placeholder':"Adresse de l'entreprise...."}})}}
+
+{{ form_row(vueFormulaire.activite, {'attr':{'placeholder':"Activite de l'entreprise...."}})}}
+
+<button type="submit" class="btn btn-dark">Enregistrer</button>
+{{ form_end(vueFormulaire) }}
 
 {% endblock %} 

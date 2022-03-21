@@ -13,6 +13,11 @@ use App\Repository\StageRepository;
 use App\Repository\FormationRepository;
 use App\Repository\EntrepriseRepository;
 
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 class MetierController extends AbstractController
 {
     /**
@@ -78,10 +83,11 @@ class MetierController extends AbstractController
         $entreprise = new Entreprise();
 
         $formulaireEntreprise= $this->createFormBuilder($entreprise)
-        ->add('nom')
-        ->add('adresse')
-        ->add('activite')
-        ->add('siteweb')
+        ->add('nom', TextareaType::class)
+        ->add('adresse', TextareaType::class)
+        ->add('activite', TextareaType::class)
+        ->add('siteweb', UrlType::class)
+        
         ->getForm();
 
         $vueFormulaireEntreprise=$formulaireEntreprise->createView();
