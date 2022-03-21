@@ -2,7 +2,16 @@
 
 
 {% block body %}
-<center><h1 class="display-4">Formulaire d'ajout d'une entreprise</h1></center>
+
+{% if action =="ajouter"%}
+<div class="jumbotron">
+        <center><h1 class="display-4">Ajout d'une entreprise</h1></center>
+</div>
+{% else %}
+<div class="jumbotron">
+        <center><h1 class="display-4">Modification d'une entreprise</h1></center>
+</div>
+{% endif %}
 
 <br>
 

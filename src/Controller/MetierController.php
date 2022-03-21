@@ -18,6 +18,10 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+use Symfony\Component\HttpFoundation\Request;
+
+use Doctrine\ORM\EntityManagerInterface;
+
 class MetierController extends AbstractController
 {
     /**
@@ -78,21 +82,58 @@ class MetierController extends AbstractController
       /**
     * @Route("/ajoutEntreprise", name="metier_ajoutEntreprise")
     */
-    public function ajoutEntreprise(): Response
+    public function ajoutEntreprise(Request $request, EntityManagerInterface $manager): Response
     {
         $entreprise = new Entreprise();
 
         $formulaireEntreprise= $this->createFormBuilder($entreprise)
-        ->add('nom', TextareaType::class)
-        ->add('adresse', TextareaType::class)
-        ->add('activite', TextareaType::class)
-        ->add('siteweb', UrlType::class)
+        ->add('nom')
+        ->add('adresse')
+        ->add('activite')
+        ->add('siteweb')
         
         ->getForm();
+
+        $formulaireEntreprise->handleRequest($request);
+
+        if( $formulaireEntreprise->isSubmitted())
+        {
+            $manager->persist($entreprise);
+            $manager->flush();
+
+            return $this -> redirectToRoute('ajoutEntreprise');
+        }
 
         $vueFormulaireEntreprise=$formulaireEntreprise->createView();
 
 
-        return $this->render('metier/ajoutEntreprise.html.twig',['vueFormulaire'=> $vueFormulaireEntreprise]);
+        return $this->render('metier/ajoutEntreprise.html.twig',['vueFormulaire'=> $vueFormulaireEntreprise,'action'=>"ajouter"]);
+    }
+
+       /**
+    * @Route("/modifierEntreprise/{id}", name="metier_modifierEntreprise")
+    */
+    public function modifierEntreprise(Request $request, EntityManagerInterface $manager, Entreprise $entreprise): Response
+    {
+        $formulaireEntreprise= $this->createFormBuilder($entreprise)
+        ->add('nom')
+        ->add('adresse')
+        ->add('activite')
+        ->add('siteweb')
+        ->getForm();
+
+        $formulaireEntreprise->handleRequest($request);
+
+        if( $formulaireEntreprise->isSubmitted())
+        {
+            $manager->persist($entreprise);
+            $manager->flush();
+
+            return $this -> redirectToRoute('entreprises');
+        }
+        $vueFormulaireEntreprise=$formulaireEntreprise->createView();
+
+
+        return $this->render('metier/ajoutEntreprise.html.twig',['vueFormulaire'=> $vueFormulaireEntreprise,'action'=> "modifier"]);
     }
 }
