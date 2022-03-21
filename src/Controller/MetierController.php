@@ -69,4 +69,24 @@ class MetierController extends AbstractController
         return $this->render('metier/formationsid.html.twig', ['controller_name' => 'MetierController','formation'=>$formation,]);
  
     }
+
+      /**
+    * @Route("/ajoutEntreprise", name="metier_ajoutEntreprise")
+    */
+    public function ajoutEntreprise(): Response
+    {
+        $entreprise = new Entreprise();
+
+        $formulaireEntreprise= $this->createFormBuilder($entreprise)
+        ->add('nom')
+        ->add('adresse')
+        ->add('activite')
+        ->add('siteweb')
+        ->getForm();
+
+        $vueFormulaireEntreprise=$formulaireEntreprise->createView();
+
+
+        return $this->render('metier/ajoutEntreprise.html.twig',['vueFormulaire'=> $vueFormulaireEntreprise]);
+    }
 }
