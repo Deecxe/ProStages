@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use App\Form\EntrepriseType;
+use App\Form\StageType
+;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Entity\Stage;
@@ -85,14 +88,8 @@ class MetierController extends AbstractController
     public function ajoutEntreprise(Request $request, EntityManagerInterface $manager): Response
     {
         $entreprise = new Entreprise();
-
-        $formulaireEntreprise= $this->createFormBuilder($entreprise)
-        ->add('nom')
-        ->add('adresse')
-        ->add('activite')
-        ->add('siteweb')
         
-        ->getForm();
+        $formulaireEntreprise= $this->createForm(EntrepriseType::class,$entreprise);
 
         $formulaireEntreprise->handleRequest($request);
 
@@ -101,7 +98,7 @@ class MetierController extends AbstractController
             $manager->persist($entreprise);
             $manager->flush();
 
-            return $this -> redirectToRoute('ajoutEntreprise');
+            return $this -> redirectToRoute('metier_accueil');
         }
 
         $vueFormulaireEntreprise=$formulaireEntreprise->createView();
@@ -115,12 +112,7 @@ class MetierController extends AbstractController
     */
     public function modifierEntreprise(Request $request, EntityManagerInterface $manager, Entreprise $entreprise): Response
     {
-        $formulaireEntreprise= $this->createFormBuilder($entreprise)
-        ->add('nom')
-        ->add('adresse')
-        ->add('activite')
-        ->add('siteweb')
-        ->getForm();
+        $formulaireEntreprise= $this->createForm(EntrepriseType::class,$entreprise);
 
         $formulaireEntreprise->handleRequest($request);
 
@@ -129,11 +121,60 @@ class MetierController extends AbstractController
             $manager->persist($entreprise);
             $manager->flush();
 
-            return $this -> redirectToRoute('entreprises');
+            return $this -> redirectToRoute('metier_accueil');
         }
         $vueFormulaireEntreprise=$formulaireEntreprise->createView();
 
 
         return $this->render('metier/ajoutEntreprise.html.twig',['vueFormulaire'=> $vueFormulaireEntreprise,'action'=> "modifier"]);
+    }
+
+      /**
+    * @Route("/ajoutStage", name="metier_ajoutStage")
+    */
+    public function ajoutStage(Request $request, EntityManagerInterface $manager): Response
+    {
+        $stage= New Stage();
+
+        $formulaireStage= $this->createForm(StageType::class,$stage);
+
+
+        $formulaireStage->handleRequest($request);
+
+        if( $formulaireStage->isSubmitted() && $formulaireStage->isValid())
+        {
+            $manager->persist($stage);
+            $manager->persist($stage->getTypeEntreprise());
+            $manager->flush();
+
+            return $this -> redirectToRoute('metier_accueil');
+        }
+        $vueformulaireStage=$formulaireStage->createView();
+
+
+        return $this->render('metier/ajoutStage.html.twig',['vueFormulaire'=> $vueformulaireStage,'action'=>"ajouter"]);
+    }
+    /**
+     * @Route("/modifStage/{id}", name="metier_modifStage")
+     */
+
+    public function modifStage(Request $request, EntityManagerInterface $manager, Stage $stage): Response
+    {
+        $formulaireStage= $this->createForm(StageType::class,$stage);
+
+
+        $formulaireStage->handleRequest($request);
+
+        if( $formulaireStage->isSubmitted())
+        {
+            $manager->persist($stage);
+            $manager->flush();
+
+            return $this -> redirectToRoute('metier_accueil');
+        }
+        $vueFormulaireStage=$formulaireStage->createView();
+
+
+        return $this->render('metier/ajoutStage.html.twig',['vueFormulaire'=> $vueFormulaireStage,'action'=> "modifier"]);
     }
 }

@@ -53,24 +53,29 @@
         {% endblock %}
 
         <div class="row">
-            <div class="col-md-3 col-sm-3 col-xs-12">
+            <div class="col-md-2 col-sm-2 col-xs-12">
             {% block filtre1 %}
                 <i class="icon-plancast"></i><a class="link" href="{{path('metier_accueil')}}"></i>Accueil</a>
             {% endblock %}
             </div>
-            <div class="col-md-3 col-sm-3 col-xs-12">
+            <div class="col-md-2 col-sm-2 col-xs-12">
             {% block filtre2 %}
                 <i class="icon-plancast"></i><a class="link" href="{{path('metier_entreprises')}}">Filtrer par entreprises</a>
             {% endblock %}
             </div>
-            <div class="col-md-3 col-sm-3 col-xs-12">
+            <div class="col-md-2 col-sm-2 col-xs-12">
             {% block filtre3 %}
                 <i class="icon-plancast"></i><a class="link" href="{{path('metier_formation')}}"></i>Filtrer par formations</a>
             {% endblock %}
             </div>
-            <div class="col-md-3 col-sm-3 col-xs-12">
+            <div class="col-md-2 col-sm-2 col-xs-12">
             {% block filtre4 %}
                 <i class="icon-plancast"></i><a class="link" href="{{path('metier_ajoutEntreprise')}}"></i>Ajouter une entreprise</a>
+            {% endblock %}
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12">
+            {% block filtre5 %}
+                <i class="icon-plancast"></i><a class="link" href="{{path('metier_ajoutStage')}}"></i>Ajouter un stage</a>
             {% endblock %}
             </div>
             
