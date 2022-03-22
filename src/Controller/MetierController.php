@@ -83,7 +83,7 @@ class MetierController extends AbstractController
     }
 
       /**
-    * @Route("/ajoutEntreprise", name="metier_ajoutEntreprise")
+    * @Route("/admin/ajoutEntreprise", name="metier_ajoutEntreprise")
     */
     public function ajoutEntreprise(Request $request, EntityManagerInterface $manager): Response
     {
@@ -108,7 +108,7 @@ class MetierController extends AbstractController
     }
 
        /**
-    * @Route("/modifierEntreprise/{id}", name="metier_modifierEntreprise")
+    * @Route("/admin/modifierEntreprise/{id}", name="metier_modifierEntreprise")
     */
     public function modifierEntreprise(Request $request, EntityManagerInterface $manager, Entreprise $entreprise): Response
     {
