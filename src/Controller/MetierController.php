@@ -130,7 +130,7 @@ class MetierController extends AbstractController
     }
 
       /**
-    * @Route("/ajoutStage", name="metier_ajoutStage")
+    * @Route("/profile/ajoutStage", name="metier_ajoutStage")
     */
     public function ajoutStage(Request $request, EntityManagerInterface $manager): Response
     {
@@ -155,7 +155,7 @@ class MetierController extends AbstractController
         return $this->render('metier/ajoutStage.html.twig',['vueFormulaire'=> $vueformulaireStage,'action'=>"ajouter"]);
     }
     /**
-     * @Route("/modifStage/{id}", name="metier_modifStage")
+     * @Route("/profile/modifStage/{id}", name="metier_modifStage")
      */
 
     public function modifStage(Request $request, EntityManagerInterface $manager, Stage $stage): Response

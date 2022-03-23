@@ -8,11 +8,30 @@ use Doctrine\Persistence\ObjectManager;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Entity\Stage;
+use App\Entity\User;
 
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        $notRandom= new User();
+        $notRandom->setPrenom("Not");
+        $notRandom->setNom("Random");
+        $notRandom->setUsername("NotRandom");
+        $notRandom->setRoles(["ROLE_USER" , "ROLE_ADMIN"]);
+        $notRandom->setPassword("$2y$10$/4xNizoP3gTiZq3UOK3xBuH/TZ0OVqGogiWn2hg14KKBU9qoUh9Ui");
+
+        $manager->persist($notRandom);
+
+        $random= new User();
+        $random->setPrenom("Im");
+        $random->setNom("Random");
+        $random->setUsername("Random");
+        $random->setRoles(["ROLE_USER"]);
+        $random->setPassword("$2y$10$4yVdq93P4tuRNtWMcGBx/eYxVdmcaPLnfzmWumZBhvJpl5tSwAY86");
+
+        $manager->persist($random);
+
         $faker = \Faker\Factory::create('fr_FR');
 
         $nbEntreprise = 3;
