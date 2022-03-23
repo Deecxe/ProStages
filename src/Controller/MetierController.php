@@ -6,12 +6,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-use App\Form\EntrepriseType;
-use App\Form\StageType
-;
+
+
 use App\Entity\Entreprise;
 use App\Entity\Formation;
 use App\Entity\Stage;
+use App\Entity\User;
+
+use App\Form\EntrepriseType;
+use App\Form\StageType;
+use App\Form\UserType;
+
 use App\Repository\StageRepository;
 use App\Repository\FormationRepository;
 use App\Repository\EntrepriseRepository;
@@ -24,6 +29,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 
 use Doctrine\ORM\EntityManagerInterface;
+
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class MetierController extends AbstractController
 {
@@ -176,5 +183,36 @@ class MetierController extends AbstractController
 
 
         return $this->render('metier/ajoutStage.html.twig',['vueFormulaire'=> $vueFormulaireStage,'action'=> "modifier"]);
+    }
+
+    /**
+     * @Route("/inscription", name="metier_inscription")
+     */
+    public function inscription(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder): Response
+    {
+
+        $user= New User();
+
+        $formulaireUser= $this->createForm(UserType::class,$user);
+
+
+        $formulaireUser->handleRequest($request);
+
+        if( $formulaireUser->isSubmitted() && $formulaireUser->isValid())
+        {
+            $user->setRoles(['ROLE_USER']);
+
+            $encodagePassword = $encoder->encodePassword($user,$user->getPassword());
+            $user->setPassword($encodagePassword);
+
+            $manager->persist($user);
+            $manager->flush();
+
+            return $this -> redirectToRoute('app_login');
+        }
+        $vueformulaireUser=$formulaireUser->createView();
+
+
+        return $this->render('metier/inscription.html.twig',['vueFormulaire'=> $vueformulaireUser]);
     }
 }

@@ -16,7 +16,14 @@ security:
             provider: app_user_provider
 
             # activate different ways to authenticate
-            http_basic: true
+            # http_basic: true
+            guard:
+                authenticators:
+                    - App\Security\FormulaireLoginAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                target: metier_accueil
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 
             # https://symfony.com/doc/current/security/impersonating_user.html
